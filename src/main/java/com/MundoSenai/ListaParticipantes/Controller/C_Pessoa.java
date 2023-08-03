@@ -25,10 +25,10 @@ public String loginPessoa(@RequestParam("usuario")String usuario,
 
 @ModelAttribute("pessoa")
 public M_Pessoa getNome(HttpSession session) {return (M_Pessoa) session.getAttribute("nome");}
-@GetMapping("/Cadastro")
+@GetMapping("/cadastro")
 public String verPagina(HttpSession session) {
 
-    if (session.getAttribute("usuario") == null) {
+    if (session.getAttribute("pessoa") == null) {
             // A sessão existe, redirecionar para a página home
             return "Cadastro/cadastro";
     } else {
@@ -36,14 +36,15 @@ public String verPagina(HttpSession session) {
             return "redirect:/login";
         }
     }
-@PostMapping ("/Cadastro")
-public String pessoaCadastro(@RequestParam("nome") String nome,
-                                 @RequestParam("cpf") BigInteger cpf,
-                                 @RequestParam("telefone") BigInteger telefone,
-                                 @RequestParam("email") String email, HttpSession session) {
+@PostMapping ("/cadastro")
+public String getCadastro(@RequestParam("nome") String nome,
+                                 @RequestParam("cpf") String cpf,
+                                 @RequestParam("telefone") String telefone,
+                                 @RequestParam("email") String email,
+                                 @RequestParam("senha") String senha, HttpSession session) {
 
-    S_Pessoa.inserirDados(nome, cpf, telefone, email);
-    return "Cadastro/cadastro";
+    S_Pessoa.inserirDados(nome, cpf, telefone, email, senha);
+    return "redirect:/";
 }
 
 

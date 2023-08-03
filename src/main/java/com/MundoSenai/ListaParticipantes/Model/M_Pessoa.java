@@ -10,18 +10,19 @@ import java.math.BigInteger;
 public class M_Pessoa {
  @Id
  @GeneratedValue(strategy = GenerationType.IDENTITY)
- private int id;
+ private Long id;
  private String nome;
- private BigInteger cpf;
- private BigInteger telefone;
+ private Long cpf;
+ private Long telefone;
  private String email;
+ private String senha;
 
 
- public int getId() {
+ public Long getId() {
   return id;
  }
 
- public void setId(int id) {
+ public void setId(Long id) {
   this.id = id;
  }
 
@@ -33,19 +34,19 @@ public class M_Pessoa {
   this.nome = nome;
  }
 
- public BigInteger getCpf() {
+ public Long getCpf() {
   return cpf;
  }
 
- public void setCpf(BigInteger cpf) {
+ public void setCpf(Long cpf) {
   this.cpf = cpf;
  }
 
- public BigInteger getTelefone() {
+ public Long getTelefone() {
   return telefone;
  }
 
- public void setTelefone(BigInteger telefone) {
+ public void setTelefone(Long telefone) {
   this.telefone = telefone;
  }
 
@@ -55,6 +56,14 @@ public class M_Pessoa {
 
  public void setEmail(String email) {
   this.email = email;
+ }
+
+ public String getSenha() {
+  return senha;
+ }
+
+ public void setSenha(String senha) {
+  this.senha = senha;
  }
 }
 

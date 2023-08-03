@@ -14,11 +14,21 @@ import java.time.LocalDate;
 @Repository
 public interface R_Pessoa extends JpaRepository<M_Pessoa, Long> {
 
-    @Query(value = "INSERT INTO pessoa (nome, cpf, telefone, email)" +
-            "Values (:nome, :cpf, :telefone, :email)", nativeQuery = true)
+    @Query(value = "INSERT INTO pessoa (nome, cpf, telefone, email, senha)" +
+            "Values (:nome, :cpf, :telefone, :email, :senha)", nativeQuery = true)
     M_Pessoa cadastrarPessoa (@Param("nome")String nome,
-                              @Param("cpf") BigInteger cpf,
-                              @Param("telefone")BigInteger telefone,
-                              @Param("email")String email);
+                              @Param("cpf") String cpf,
+                              @Param("telefone")String telefone,
+                              @Param("email")String email,
+                              @Param("senha")String senha);
+
+    @Query(value = "SELECT * FROM pessoa WHERE id = :id", nativeQuery = true)
+    M_Pessoa findById(@Param("id")String id);
+
+
 }
+
+
+
+
 

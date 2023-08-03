@@ -16,15 +16,16 @@ public class S_Pessoa {
     private static R_Pessoa pessoa;
 
 
-    public static String inserirDados(String nome, BigInteger cpf, BigInteger telefone,
-                                      String email){
+    public static String inserirDados(String nome, String cpf, String telefone,
+                                      String email, String senha){
         M_Pessoa mPessoa = new M_Pessoa();
         mPessoa.setNome(nome);
-        mPessoa.setCpf(cpf);
-        mPessoa.setTelefone(telefone);
+        mPessoa.setCpf(Long.valueOf(cpf));
+        mPessoa.setTelefone(Long.valueOf(telefone));
         mPessoa.setEmail(email);
+        mPessoa.setSenha(senha);
         pessoa.save(mPessoa);
-        return  "Inserido com sucesso";
+        return  "Cadastrado com sucesso";
     }
 
 
@@ -33,9 +34,11 @@ public class S_Pessoa {
     {this.pessoa = pessoa;}
 
 
-    public static M_Pessoa cadastraPessoa(String nome, BigInteger cpf, BigInteger telefone,
-                                          String email) {
-        return pessoa.cadastrarPessoa(nome, cpf, telefone, email);
+    public static M_Pessoa cadastrarPessoa(String nome, String cpf, String telefone,
+                                          String email, String senha) {
+        return pessoa.cadastrarPessoa(nome, cpf, telefone, email, senha);
     }
+
+
 
 }
