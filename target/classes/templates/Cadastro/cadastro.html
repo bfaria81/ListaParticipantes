@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -75,9 +75,9 @@
             <div class="col-sm-6">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="sp_confSenha"><i class="fa-solid fa-key"></i></span>
-                    <input id="confSenha" name="confSenha" type="password" class="form-control"
+                    <input id="conf-Senha" name="conf-Senha" type="password" class="form-control"
                            placeholder="Confirme a senha"
-                           aria-label="confSenha"
+                           aria-label="conf-Senha"
                            aria-describedby="sp_confSenha">
                 </div>
             </div>
@@ -87,6 +87,8 @@
             </div>
 
         </div>
+
+        <div th:if="${mensagem}" th:utext="${mensagem}" style="color: red;"></div>
 
     </form>
 
