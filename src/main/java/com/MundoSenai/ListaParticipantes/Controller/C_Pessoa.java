@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigInteger;
 
@@ -48,15 +49,21 @@ public String getCadastro(@RequestParam("nome") String nome,
                           @RequestParam("telefone") String telefone,
                           @RequestParam("email") String email,
                           @RequestParam("senha") String senha,
-                          @RequestParam("senha") String conf_Senha, Model model) {
+                          @RequestParam("conf_Senha") String conf_Senha,
+                          RedirectAttributes redirectAttributes){
 
     M_Resposta m_resposta = S_Pessoa.inserirDados(nome, cpf, telefone, email, senha, conf_Senha);
     if(m_resposta.getStatus()){
-        model.addAttribute("mensagem", m_resposta.getMensagem());
-        return "Login/login"; //mudado de redirect:/
+        redirectAttributes.addFlashAttribute("mensagem", m_resposta.getMensagem());
+        return "redirect:/"; //mudado de redirect:/
     } else {
-        model.addAttribute("mensagem", m_resposta.getMensagem());
-        return "Cadastro/cadastro";
+        redirectAttributes.addFlashAttribute("mensagem", m_resposta.getMensagem());
+        redirectAttributes.addFlashAttribute("nome", nome);
+        redirectAttributes.addFlashAttribute("cpf", cpf);
+        redirectAttributes.addFlashAttribute("telefone", telefone);
+        redirectAttributes.addFlashAttribute("email", email);
+        redirectAttributes.addFlashAttribute("senha", senha);
+        return "redirect:/cadastro";
     }
 }
 

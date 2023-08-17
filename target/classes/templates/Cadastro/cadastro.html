@@ -31,7 +31,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="sp_nome"><i class="fa-solid fa-user-check"></i></span>
                     <input id="nome" name="nome" type="text" class="form-control" placeholder="Nome"
-                           aria-label="nome"
+                           aria-label="nome" th:value="${nome}"
                            aria-describedby="sp_nome">
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="sp_cpf"><i class="fa-solid fa-id-card"></i></span>
                     <input id="cpf" name="cpf" type="text" class="form-control" placeholder="CPF"
-                           aria-label="cpf"
+                           aria-label="cpf" th:value="${cpf}"
                            aria-describedby="sp_cpf">
                 </div>
             </div>
@@ -49,7 +49,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="sp_email"><i class="fa-solid fa-envelope"></i></span>
                     <input id="email" name="email" type="text" class="form-control" placeholder="E-mail"
-                           aria-label="email"
+                           aria-label="email" th:value="${email}"
                            aria-describedby="sp_email">
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="sp_telefone"><i class="fa-solid fa-phone"></i></span>
                     <input id="telefone" name="telefone" type="text" class="form-control" placeholder="Telefone"
-                           aria-label="telefone"
+                           aria-label="telefone" th:value="${telefone}"
                            aria-describedby="sp_telefone">
                 </div>
             </div>
@@ -67,7 +67,7 @@
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="sp_senha"><i class="fa-solid fa-key"></i></span>
                     <input id="senha" name="senha" type="password" class="form-control" placeholder="Senha"
-                           aria-label="senha"
+                           aria-label="senha" th:value="${senha}"
                            aria-describedby="sp_senha">
                 </div>
             </div>
@@ -75,10 +75,10 @@
             <div class="col-sm-6">
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="sp_confSenha"><i class="fa-solid fa-key"></i></span>
-                    <input id="conf-Senha" name="conf-Senha" type="password" class="form-control"
+                    <input id="conf_Senha" name="conf_Senha" type="password" class="form-control"
                            placeholder="Confirme a senha"
-                           aria-label="conf-Senha"
-                           aria-describedby="sp_confSenha">
+                           aria-label="conf_Senha"
+                           aria-describedby="sp_conf_Senha">
                 </div>
             </div>
 
