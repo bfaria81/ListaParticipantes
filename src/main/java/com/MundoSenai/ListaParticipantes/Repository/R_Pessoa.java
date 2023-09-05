@@ -25,6 +25,9 @@ public interface R_Pessoa extends JpaRepository<M_Pessoa, Long> {
     @Query(value = "SELECT * FROM pessoa WHERE id = :id", nativeQuery = true)
     M_Pessoa findById(@Param("id")String id);
 
+    @Query(value = "SELECT * FROM pessoa WHERE cpf = :cpf and senha = :senha", nativeQuery = true)
+    M_Pessoa findByCpfESenha(@Param("cpf")Long cpf, @Param("senha")String senha);
+
 
 }
 

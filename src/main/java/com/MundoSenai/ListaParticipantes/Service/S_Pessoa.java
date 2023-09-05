@@ -61,13 +61,20 @@ public class S_Pessoa {
                 r_pessoa.save(mPessoa);
                 mensagem += "Pessoa Cadastrada com Sucesso !<br/>";
             }catch (DataIntegrityViolationException e){ //DataIntegrity é a exceção do Spring
-                mensagem += e.getMessage();
+                if(e.getMessage().contains("u_cpf")){
+                    mensagem += "O CPF informado já foi cadastrado!";
+                } else {
+                    mensagem += "Erro ao cadastrar";
+                }
                 podeSalvar = false;
             }
         }
         M_Resposta m_resposta = new M_Resposta(podeSalvar, mensagem);
         return m_resposta;
     }
+
+
+
 
     public S_Pessoa(R_Pessoa r_pessoa)
     {this.r_pessoa = r_pessoa;}

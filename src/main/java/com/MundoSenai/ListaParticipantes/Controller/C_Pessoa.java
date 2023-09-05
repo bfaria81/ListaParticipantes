@@ -1,9 +1,13 @@
 package com.MundoSenai.ListaParticipantes.Controller;
 
-import com.MundoSenai.ListaParticipantes.Model.M_Pessoa;
+
 import com.MundoSenai.ListaParticipantes.Model.M_Resposta;
+
+import com.MundoSenai.ListaParticipantes.Service.S_Login;
 import com.MundoSenai.ListaParticipantes.Service.S_Pessoa;
+
 import jakarta.servlet.http.HttpSession;
+import org.springframework.session.Session;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.math.BigInteger;
 
 @Controller
-//@SessionAttributes("pessoa")
+@SessionAttributes("usuario")
 public class C_Pessoa {
 
 @GetMapping("/")
@@ -22,13 +26,23 @@ public String landPage(){
 
 @PostMapping("/")
 public String loginPessoa(@RequestParam("usuario")String usuario,
-                          @RequestParam("senha")String senha){
-    return "Home/home";
+                          @RequestParam("senha")String senha,
+                          HttpSession session){
+    session.setAttribute("usuario", S_Login.validaLogin(usuario, senha));
+
+    if(session.getAttribute("usuario") != null){
+        return "Home/home";
+    } else {
+        return "redirect:/";
+    }
 }
 @GetMapping("/cadastro")
     public String getCadastro(){
         return "Cadastro/cadastro";
     }
+
+
+
 
 //@ModelAttribute("pessoa")
 //public M_Pessoa getNome(HttpSession session) {return (M_Pessoa) session.getAttribute("nome");}
@@ -43,6 +57,8 @@ public String loginPessoa(@RequestParam("usuario")String usuario,
 //            return "redirect:/login";
 //        }
 //    }
+
+
 @PostMapping ("/cadastro")
 public String getCadastro(@RequestParam("nome") String nome,
                           @RequestParam("cpf") String cpf,
