@@ -1,340 +1,67 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"-->
-    <!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+<h1 class="text-left mt-5">Cadastro</h1>
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-    <script src="js/validadorCPF.js"></script>
-
-    <link rel="icon" href="icone.svg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <title>Login</title>
-
-    <style>
-    /* Adjust the z-index of the toast to make it appear above input fields */
-    .toaster {
-        z-index: 1000; /* You can adjust this value as needed */
-    }
-    .error-field{
-        border: 1px solid red;
-        border-radius: 0.375rem;
-        box-shadow: 0px 0px 5px 0px red;
-    }
-    h1{
-        text-shadow: -1px 1px 1px #aaa;
-    }
-    input:focus{
-        box-shadow: 0px 4px 4px 3px #aaa !important;
-        z-index: -3;
-    }
-
-    </style>
-
-
-</head>
-<body>
-<div class="container">
-    <h1 class="text-left mt-5">Cadastro</h1>
-
-<!--    <form action="/cadastro" method="post">-->
-
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="input-group mb-3 gNome">
-                    <span class="input-group-text" id="sp_nome"><i class="fa-solid fa-user-check"></i></span>
-                    <input id="nome" name="nome" type="text" class="form-control" placeholder="Nome"
-                           aria-label="Nome" th:value="${nome}"
-                           aria-describedby="sp_nome"/>
-                </div>
-            </div>
-
-
-            <div class="col-sm-4">
-                <div class="input-group mb-3 gCpf">
-                    <span class="input-group-text" id="sp_cpf"><i class="fa-solid fa-id-card"></i></span>
-                    <input id="cpf" name="cpf" type="text" class="form-control" placeholder="CPF"
-                           aria-label="CPF" th:value="${cpf}"
-                           aria-describedby="sp_cpf"/>
-                </div>
-            </div>
-
-
-            <div class="col-sm-8">
-                <div class="input-group mb-3 gEmail">
-                    <span class="input-group-text" id="sp_email"><i class="fa-solid fa-envelope"></i></span>
-                    <input id="email" name="email" type="email" class="form-control" placeholder="E-mail"
-                           aria-label="Email" th:value="${email}"
-                           aria-describedby="sp_email"/>
-                </div>
-            </div>
-
-            <div class="col-sm-4">
-                <div class="input-group mb-3 gTelefone">
-                    <span class="input-group-text" id="sp_telefone"><i class="fa-solid fa-phone"></i></span>
-                    <input id="telefone" name="telefone" type="text" class="form-control" placeholder="Telefone"
-                           aria-label="Telefone" th:value="${telefone}"
-                           aria-describedby="sp_telefone"/>
-                </div>
-            </div>
-
-
-            <div class="col-sm-6">
-                <div class="input-group mb-3 gSenha">
-                    <span class="input-group-text" id="sp_senha"><i class="fa-solid fa-key"></i></span>
-                    <input id="senha" name="senha" type="password" class="form-control" placeholder="Senha"
-                           aria-label="Senha" th:value="${senha}"
-                           aria-describedby="sp_senha"/>
-                </div>
-            </div>
-
-            <div class="col-sm-6">
-                <div class="input-group mb-3 gSenha">
-                    <span class="input-group-text" id="sp_confSenha"><i class="fa-solid fa-key"></i></span>
-                    <input id="conf_Senha" name="conf_Senha" type="password" class="form-control"
-                           placeholder="Confirme a senha"
-                           aria-label="ConfirmaSenha"
-                           aria-describedby="sp_conf_Senha"/>
-                </div>
-            </div>
-
-            <div class="col-sm-12 text-end">
-                <button id="enviar" class="btn btn-primary">Cadastrar</button>
-            </div>
+<div class="row">
+    <div class="col-sm-8">
+        <div class="input-group mb-3 gNome">
+            <span class="input-group-text" id="sp_nome"><i class="fa-solid fa-user-check"></i></span>
+            <input id="nome" name="nome" type="text" class="form-control" placeholder="Nome"
+                   aria-label="Nome"
+                   aria-describedby="sp_nome"/>
         </div>
+    </div>
 
 
-        <script type="text/javascript">
-        $("#enviar").click(validaEnvio);
-
-        function validaCampoVazio(campo){
-            if(campo.trim() == ''){
-                return true;
-            }else{
-                return false;
-            }
-        }
-
-        function createToastArea(){
-            if($(".toaster").length == 0){
-                $("body").prepend(''+
-                    '<div aria-live="polite" aria-atomic="true"'+
-                    'class="position-absolute top-0 end-0 erros">'+
-                        '<div class="toaster position-absolute top-0 end-0">'+
-                        '</div>'+
-                    '</div>');
-            }
-        }
-
-        function showToast(alerta) {
-            createToastArea();
-
-            let tipo
-            if(alerta.sucesso){
-                tipo = ' bg-success ';
-            }else{
-                tipo = ' bg-danger ';
-            }
-            const toastElement = $('<div class="mt-1 toast align-items-center'+tipo+'text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">'+
-                                        '<div class="d-flex">'+
-                                            '<div class="toast-body">'+
-                                                alerta.mensagem+
-                                                '</div>'+
-                                            '<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>'+
-                                        '</div>'+
-                                    '</div>');
-
-            toastElement.on('hidden.bs.toast', function () {
-                $(this).remove();
-            });
-
-            $(".toaster").append(toastElement);
-            const newToast = new bootstrap.Toast(toastElement);
-            newToast.show();
-        }
-
-        function validaEnvio(){
-            let podeEnviar = true;
-            let nome = $("#nome").val();
-            let cpf = $("#cpf").val();
-            let email = $("#email").val();
-            let telefone = $("#telefone").val();
-            let senha = $("#senha").val();
-            let conf_Senha = $("#conf_Senha").val();
-
-            $("#errorMessage").text("");
-            $(".error-field").removeClass("error-field");
-            if(validaCampoVazio(nome)){
-                podeEnviar = false;
-                showToast({sucesso: podeEnviar, mensagem: "O Nome precisa ser Preenchido!"});
-                $(".gNome").addClass("error-field");
-            }
-            if(validaCampoVazio(email) && validaCampoVazio(telefone)){
-                podeEnviar = false;
-                showToast({sucesso: podeEnviar, mensagem: "Email ou telefone precisa ser informado!"});
-                $(".gTelefone").addClass("error-field");
-                $(".gEmail").addClass("error-field");
-            }
-            if(validaCampoVazio(senha)){
-                podeEnviar = false;
-                showToast({sucesso: podeEnviar, mensagem: "A senha precisa ser informada e igual a Confirmação de Senha!"});
-                $(".gSenha").addClass("error-field");
-            }else if (senha != conf_Senha){
-                showToast({sucesso: podeEnviar, mensagem: "Senha e Confirmação de senha não conferem!"});
-                $(".gSenha").addClass("error-field");
-            }
-            if(!validarCPF(cpf)){
-                podeEnviar = false;
-                showToast({sucesso: podeEnviar, mensagem: "O CPF informado é Inválido!"});
-                $(".gCpf").addClass("error-field");
-            }
-
-            if(podeEnviar){
-                $.ajax({
-                    type: "POST",
-                    url: "/cadastro",
-                    data:{
-                        nome:nome,
-                        email:email,
-                        cpf:cpf,
-                        senha:senha,
-                        conf_Senha:conf_Senha,
-                        telefone:telefone,
-                    },
-                    success: function(data){
-                        $("#errorMessage").text("");
-                        if(data.sucesso){
-                            window.location.href="/";
-                        }else{
-                            showToast(data);
-                        }
-
-                    },
-                    error: function(){
-                        $("#errorMessage").append("Ops! Ocorreu um erro inesperado.");
-                    }
-                });
-            }
-        }
-
-        </script>
+    <div class="col-sm-4">
+        <div class="input-group mb-3 gCpf">
+            <span class="input-group-text" id="sp_cpf"><i class="fa-solid fa-id-card"></i></span>
+            <input id="cpf" name="cpf" type="text" class="form-control" placeholder="CPF"
+                   aria-label="CPF"
+                   aria-describedby="sp_cpf"/>
+        </div>
+    </div>
 
 
-        <!--        <script>-->
-        <!--            $(document).ready(function() {-->
-        <!--                // Função para validar campos e enviar o formulário-->
-        <!--                $("#btnEnviar").click(function() {-->
-        <!--                    let cpf = $('#cpf').val().replace(/\D/g, '');-->
+    <div class="col-sm-8">
+        <div class="input-group mb-3 gEmail">
+            <span class="input-group-text" id="sp_email"><i class="fa-solid fa-envelope"></i></span>
+            <input id="email" name="email" type="email" class="form-control" placeholder="E-mail"
+                   aria-label="Email"
+                   aria-describedby="sp_email"/>
+        </div>
+    </div>
 
-        <!--                    if (cpf.length === 11 && validarCPF(cpf)) {-->
-        <!--                        let nome = $('#nome').val();-->
-        <!--                        let email = $('#email').val();-->
-        <!--                        let telefone = $('#telefone').val();-->
-        <!--                        let senha = $('#senha').val();-->
+    <div class="col-sm-4">
+        <div class="input-group mb-3 gTelefone">
+            <span class="input-group-text" id="sp_telefone"><i class="fa-solid fa-phone"></i></span>
+            <input id="telefone" name="telefone" type="text" class="form-control" placeholder="Telefone"
+                   aria-label="Telefone"
+                   aria-describedby="sp_telefone"/>
+        </div>
+    </div>
 
-        <!--                        // Realiza a chamada AJAX para o servidor-->
-        <!--                        $.ajax({-->
-        <!--                            type: 'POST',-->
-        <!--                            url: 'Cadastro/cadastro', // Substitua pela URL real do endpoint no servidor-->
-        <!--                            data: {-->
-        <!--                                cpf: cpf,-->
-        <!--                                nome: nome,-->
-        <!--                                email: email,-->
-        <!--                                telefone: telefone,-->
-        <!--                                senha: senha-->
-        <!--                            },-->
-        <!--                            success: function(response) {-->
-        <!--                                if (response.success) {-->
-        <!--                                    alert('Cadastro realizado com sucesso!');-->
-        <!--                                } else {-->
-        <!--                                    alert('Erro ao cadastrar.');-->
-        <!--                                }-->
-        <!--                            },-->
-        <!--                            error: function() {-->
-        <!--                                alert('Erro ao comunicar com o servidor.');-->
-        <!--                            }-->
-        <!--                        });-->
-        <!--                    } else {-->
-        <!--                        alert('CPF inválido ou não preenchido corretamente.');-->
-        <!--                    }-->
-        <!--                });-->
 
-        <!--                // Função para validar nome e enviar o formulário (se necessário)-->
-        <!--                function campoVazio(campo) {-->
-        <!--                    return campo.trim() === '';-->
-        <!--                }-->
+    <div class="col-sm-6">
+        <div class="input-group mb-3 gSenha">
+            <span class="input-group-text" id="sp_senha"><i class="fa-solid fa-key"></i></span>
+            <input id="senha" name="senha" type="password" class="form-control" placeholder="Senha"
+                   aria-label="Senha"
+                   aria-describedby="sp_senha"/>
+        </div>
+    </div>
 
-        <!--                // Resto do seu código para validar outros campos...-->
+    <div class="col-sm-6">
+        <div class="input-group mb-3 gSenha">
+            <span class="input-group-text" id="sp_confSenha"><i class="fa-solid fa-key"></i></span>
+            <input id="conf_Senha" name="conf_Senha" type="password" class="form-control"
+                   placeholder="Confirme a senha"
+                   aria-label="ConfirmaSenha"
+                   aria-describedby="sp_conf_Senha"/>
+        </div>
+    </div>
 
-        <!--                // Função para validar CPF no focusout-->
-        <!--                $('#cpf').on('focusout', function() {-->
-        <!--                    var cpf = $(this).val().replace(/\D/g, ''); // Remove non-numeric characters-->
-
-        <!--                    if (cpf.length === 11) {-->
-        <!--                        if (validarCPF(cpf)) {-->
-        <!--                            $('#cpf').removeClass('error'); // Remove the error class-->
-        <!--                            $('#cpf-validation-msg').text('');-->
-        <!--                        } else {-->
-        <!--                            $('#cpf').addClass('error'); // Add the error class-->
-        <!--                            $('#cpf-validation-msg').text('CPF inválido');-->
-        <!--                        }-->
-        <!--                    } else {-->
-        <!--                        $('#cpf').addClass('error'); // Add the error class-->
-        <!--                        $('#cpf-validation-msg').text('CPF deve ter 11 dígitos');-->
-        <!--                    }-->
-        <!--                });-->
-
-        <!--                // Função para validar telefone e email no focusout-->
-        <!--                $('#email').on('focusout', validateFields);-->
-        <!--                $('#telefone').on('focusout', validateFields);-->
-
-        <!--                function validateFields() {-->
-        <!--                    var email = $('#email').val().trim();-->
-        <!--                    var telefone = $('#telefone').val().replace(/\D/g, ''); // Remove non-numeric characters-->
-
-        <!--                    if (email === '' && telefone === '') {-->
-        <!--                        $('#email').addClass('error');-->
-        <!--                        $('#telefone').addClass('error');-->
-        <!--                        $('#email-validation-msg').text('Pelo menos um campo deve ser preenchido');-->
-        <!--                        $('#telefone-validation-msg').text('Pelo menos um campo deve ser preenchido');-->
-        <!--                    } else {-->
-        <!--                        $('#email').removeClass('error');-->
-        <!--                        $('#telefone').removeClass('error');-->
-        <!--                        $('#email-validation-msg').text('');-->
-        <!--                        $('#telefone-validation-msg').text('');-->
-        <!--                    }-->
-        <!--                }-->
-
-        <!--                // Função para validar senhas no focusout-->
-        <!--                $('#senha').on('focusout', validatePasswords);-->
-        <!--                $('#conf_Senha').on('focusout', validatePasswords);-->
-
-        <!--                function validatePasswords() {-->
-        <!--                    var senha = $('#senha').val();-->
-        <!--                    var conf_senha = $('#conf_Senha').val();-->
-
-        <!--                    if (senha !== '' && conf_senha !== '' && senha !== conf_senha) {-->
-        <!--                        $('#senha').addClass('error');-->
-        <!--                        $('#conf_Senha').addClass('error');-->
-        <!--                        $('#senha-validation-msg').text('As senhas não coincidem');-->
-        <!--                    } else {-->
-        <!--                        $('#senha').removeClass('error');-->
-        <!--                        $('#conf_Senha').removeClass('error');-->
-        <!--                        $('#senha-validation-msg').text('');-->
-        <!--                    }-->
-        <!--                }-->
-        <!--            });-->
-        <!--        </script>-->
-
-<!--    </form>-->
+    <div class="col-sm-12 text-end">
+        <button id="btnEnviar" class="btn btn-primary">Cadastrar</button>
+    </div>
 </div>
-</body>
-</html>
+
+
